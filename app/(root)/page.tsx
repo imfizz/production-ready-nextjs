@@ -14,7 +14,7 @@ export default async function Home({ searchParams }: {
       author: { _id: 1, name: 'Adrian' },
       _id: 1,
       description: 'This is a description',
-      image: 'https://images.pexels.com/photos/30302396/pexels-photo-30302396.jpeg',
+      image: 'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg',
       category: "Robots",
       title: "We Robots",
     },
