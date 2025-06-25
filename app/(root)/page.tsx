@@ -9,12 +9,12 @@ export default async function Home({ searchParams }: {
 
   const posts = [
     { 
-      _createdAt: new Date(), 
+      _createdAt: new Date(),
       views: 55,
-      author: { _id: 1 },
+      author: { _id: 1, name: 'Adrian' },
       _id: 1,
       description: 'This is a description',
-      image: '',
+      image: 'https://images.pexels.com/photos/30302396/pexels-photo-30302396.jpeg',
       category: "Robots",
       title: "We Robots",
     },
@@ -37,7 +37,7 @@ export default async function Home({ searchParams }: {
         <ul className="mt-7 card_grid">
           {posts?.length > 0 ? (
             posts.map((post: StartupCardType, index: number) => (
-              <StartupCard key={post?._id} post={post}/>
+              <StartupCard key={post?._id} post={post} />
             ))
           ) : (
             <p className="no-results">No startups found</p>
