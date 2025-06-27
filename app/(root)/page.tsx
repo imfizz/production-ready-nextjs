@@ -8,23 +8,7 @@ export default async function Home({ searchParams }: {
 }) {
 
   const query = (await searchParams).query;
-
   const posts = await client.fetch(STARTUPS_QUERY);
-
-  console.log(JSON.stringify(posts, null, 2));
-
-  // const posts = [
-  //   { 
-  //     _createdAt: new Date(),
-  //     views: 55,
-  //     author: { _id: 1, name: 'Adrian' },
-  //     _id: 1,
-  //     description: 'This is a description',
-  //     image: 'https://images.pexels.com/photos/2085831/pexels-photo-2085831.jpeg',
-  //     category: "Robots",
-  //     title: "We Robots",
-  //   },
-  // ];
 
   return (
     <>
