@@ -1,0 +1,1 @@
+i added the text file just to test the generate commit message by cursor
