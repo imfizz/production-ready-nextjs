@@ -24,7 +24,7 @@
     "easymde": "^2.18.0",
     "lucide-react": "^0.446.0",
     "markdown-it": "^14.1.0",
-    "next": "canary",
+    "next": "^15.4.0-canary.115",
     "next-auth": "^5.0.0-beta.22",
     "next-sanity": "^9.5.1-canary.23",
     "react": "^19.0.0-rc-09111202-20241011",
