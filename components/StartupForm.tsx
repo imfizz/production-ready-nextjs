@@ -1,19 +1,60 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useActionState, useState } from "react";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import MDEditor from "@uiw/react-md-editor";
 import { Button } from "./ui/button";
 import { Send } from "lucide-react";
+import { formSchema } from "@/lib/validation";
+import { z } from "zod";
 
 const StartupForm = () => {
     const [errors, setErrors] = useState<Record<string, string>>({});
     const [pitch, setPitch] = useState("");
 
-    const isPending = false;
+    const handleFormSubmit = async (prevState: any, formData: FormData) => {
+        try {
+            const formValues = {
+                title: formData.get("title") as string,
+                description: formData.get("description") as string,
+                category: formData.get("category") as string,
+                link: formData.get("link") as string,
+                pitch,
+            };
 
-    return <form action={() => {}} className="startup-form">
+            await formSchema.parseAsync(formValues);
+
+            console.log(formValues);
+
+            // const result = await createIdea(prevState, formData, pitch);
+
+            console.log(result);
+        } catch(error) {
+            if(error instanceof z.ZodError) {
+                const fieldErrors = error.flatten().fieldErrors;
+
+                setErrors(fieldErrors as unknown as Record<string, string>);
+
+                return { ...prevState, error: 'Validation failed', status: "ERROR" };
+            } 
+
+            return {
+                ...prevState,
+                error: 'An unexpected error has occurred',
+                status: 'ERROR',
+            };
+        } 
+    };
+
+    const [state, formAction, isPending] = useActionState(handleFormSubmit,
+        {
+            error: "",
+            status: "INITIAL",
+        }
+    );
+
+    return <form action={formAction} className="startup-form">
         <div>
             <label htmlFor="title" className="startup-form_label">Title</label>
             <Input 
